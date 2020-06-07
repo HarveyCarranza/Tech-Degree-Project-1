@@ -8,12 +8,17 @@ project 1 - A Random Quote Generator
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
 /*** 
- * `quotes` array 
+ * function used to generate a random number between 1 and 255 
+ * for use in a later funciton to randomly change the background color of the quotes.
 ***/
 function randomColor(){
   let color = Math.floor(Math.random()*255)+1;
   return color;
 } 
+
+/***
+* An array that holds 6 different quotes from popular video games
+***/
 
 let quotes = [
 
@@ -28,7 +33,8 @@ let quotes = [
 //console.log(quotes);
 
 /***
- * `getRandomQuote` function
+ * Random quote function that pulls a quote from the 'quotes' array above 
+ * by selecting the index value and then returns the quote.
 ***/
 
 function getRandomQuote(){
@@ -38,7 +44,12 @@ function getRandomQuote(){
 }
  //console.log(getRandomQuote());
 /***
- * `printQuote` function
+ * a function that concatenates all the parts of the quote returned by the
+ * getRandomQuote() into html format.
+ * the function also has the bgColorUpdater() inserted to change the color of
+ * the background every time the function is called.
+ * as well as the line of code just above that changes the quote shown on the page
+ * whenever the function is called.
 ***/
 
 function printQuote(){
@@ -69,6 +80,12 @@ function printQuote(){
   return formattedQuote;
 }
 
+/***
+ * function used to generate the random rgb string
+ * then concatenates it for use
+ * then actually changes the color background using line 97.
+ */
+
 function bgColorUpdater(){
   let randomR, randomG, randomB, rGB;
   randomR = randomColor();
@@ -79,6 +96,14 @@ function bgColorUpdater(){
 
   document.body.style.backgroundColor = rGB;
 }
+
+/***
+ * setInterval function that calls the bgChanger() every 10000 milliseconds
+ * the bgChanger() generates a new random quote
+ * then calls the print quote function
+ * then changes the quote on the page
+ * then changes the color
+ */
 
 let timer = setInterval(bgChanger,10000);
 
@@ -93,6 +118,7 @@ function bgChanger(){
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
+ * looks like code that changes the quote upon a click and calls the printQuote function
 ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
