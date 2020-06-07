@@ -47,35 +47,37 @@ function printQuote(){
   let formattedQuote = '<p class = "quote">' + quoteString.quote + '</p>' 
   + '<p class = "source">' + quoteString.source;
   
-    if( typeof(quoteString.citation)!== "undefined"){
+  if( typeof(quoteString.citation)!== "undefined"){
 
-      formattedQuote += '<span class = "citation">' + quoteString.citation + '</span>';
+    formattedQuote += '<span class = "citation">' + quoteString.citation + '</span>';
   }
 
-    if(typeof(quoteString.year)!== "undefined"){
+  if(typeof(quoteString.year)!== "undefined"){
 
-      formattedQuote +=  '<span class = "year">' + quoteString.year + '</span> </p>';
+    formattedQuote +=  '<span class = "year">' + quoteString.year + '</span> </p>';
   }
 
-    if(typeof(quoteString.tags)!== "undefined"){
+  if(typeof(quoteString.tags)!== "undefined"){
 
-      formattedQuote +=  '<span class = "tags">' + quoteString.tags + '</span> </p>';
-}
+    formattedQuote +=  '<span class = "tags">' + quoteString.tags + '</span> </p>';
+  }
+
+
+  document.getElementById('quote-box').innerHTML = formattedQuote;
+  bgColorUpdater();
+
   return formattedQuote;
 }
 
-let quoteHTML = printQuote();
-//console.log(quoteHTML);
-
 function bgColorUpdater(){
-let randomR, randomG, randomB, rGB;
-randomR = randomColor();
-randomG = randomColor();
-randomB = randomColor();
+  let randomR, randomG, randomB, rGB;
+  randomR = randomColor();
+  randomG = randomColor();
+  randomB = randomColor();
 
-rGB = 'rgb('+randomR+', ' + randomG + ', ' + randomB +')'; 
+  rGB = 'rgb('+randomR+', ' + randomG + ', ' + randomB +')'; 
 
-document.body.style.backgroundColor = rGB;
+  document.body.style.backgroundColor = rGB;
 }
 
 let timer = setInterval(bgChanger,10000);
@@ -83,7 +85,6 @@ let timer = setInterval(bgChanger,10000);
 function bgChanger(){
 
   getRandomQuote();
-  printQuote();
   quoteHTML = printQuote();
   document.getElementById('quote-box').innerHTML = quoteHTML;
   bgColorUpdater();
